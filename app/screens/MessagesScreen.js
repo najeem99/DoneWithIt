@@ -42,6 +42,7 @@ const initialMessages = [
   ];
 function MessagesScreen(props) {
  const [messages,setMessages] = useState(initialMessages)
+ const [refreshing,setRefreshing] = useState(false)
 
   
   const handleDelete = message => {
@@ -65,6 +66,17 @@ function MessagesScreen(props) {
           ></ListItem>
         )}
         ItemSeparatorComponent={() => <Separator/>}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setMessages([{
+            id: 2,
+            title: "T2",
+            description: "D2",
+            image: {
+              uri: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg",
+            },
+          }])
+        }}
       ></FlatList>
     </Screen>
   );
