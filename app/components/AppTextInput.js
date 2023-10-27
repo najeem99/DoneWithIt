@@ -14,7 +14,7 @@ function AppTextInput({ icon, ...otherProps }) {
           style={styles.icon}
         />
       )}
-      <TextInput style={defaultStyles.text} {...otherProps}></TextInput>
+      <TextInput style={[defaultStyles.text,styles.textInput]} {...otherProps}></TextInput>
     </View>
   );
 }
@@ -31,5 +31,8 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
   },
+  textInput:{
+    width:"100%"
+  }
 });
 export default AppTextInput;
