@@ -20,15 +20,15 @@ const initialMessages = [
       title: "T2",
       description: "D2",
       image: {
-        uri: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg",
+        uri: "https://media.licdn.com/dms/image/C5103AQE__5syArMn4Q/profile-displayphoto-shrink_200_200/0/1584126342694?e=1702512000&v=beta&t=pCSykU-8ipTcsP5wyjd4r8_hJP8irntV649NzIfy8WI",
       },
     },
     {
         id: 3,
         title: "T3",
-        description: "D3",
+        description: "This plugin obtains information and performs operations specific to the user’s locale, language, and timezone. Note the difference between locale and language: locale controls how numbers, dates, and times are displayed for a region, while language determines what language text appears as, independently of locale settings. Often developers use locale to set both settings, but there is no reason a user couldn’t set her language to “English” but locale to “French”, so that text is displayed in English but dates, times, etc., are displayed as they are in France. Unfortunately, most mobile platforms currently do not make a distinction between these settings.",
         image: {
-          uri: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg",
+          uri: "https://media.licdn.com/dms/image/D4D03AQGvp96M6KXBWw/profile-displayphoto-shrink_200_200/0/1679594596510?e=1704326400&v=beta&t=olmU1A6f-whvS9pSsCbCwpmPGeskCZyxiwtrULJZMW4",
         },
       },
       {
@@ -68,12 +68,12 @@ function MessagesScreen(props) {
         ItemSeparatorComponent={() => <Separator/>}
         refreshing={refreshing}
         onRefresh={() => {
-          setMessages([{
-            id: 2,
-            title: "T2",
+          setMessages([...messages,{
+            id: (messages.length+1),
+            title: "T"+messages.length,
             description: "D2",
             image: {
-              uri: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg",
+              uri: "https://source.unsplash.com/random/200x200?sig="+messages.length,
             },
           }])
         }}
