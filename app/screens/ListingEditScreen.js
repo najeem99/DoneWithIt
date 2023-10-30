@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Screen from "../components/Screen";
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 import {
   AppForm,
@@ -8,6 +8,7 @@ import {
   AppFormPicker,
   SubmitButton,
 } from "../components/forms";
+import * as Location from "expo-location";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 
 const validationSchema = Yup.object().shape({
@@ -22,6 +23,16 @@ const categories = [
   { label: "Tiles", value: 3 },
 ];
 function ListingEditScreen(props) {
+  const [location,setLocation]= useState()
+  const getLocation = async () => {
+    const {granted} = await Location.requestPermissionsAsync();
+    if(!granted) return;
+    const {coords: {latitude,longitude}} = await Location.getLastKnownPositionAsync();
+    setLocation({latitude,longitude})
+  };
+  useEffect(() => {
+    getLocation();
+  }, []);
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -31,7 +42,7 @@ function ListingEditScreen(props) {
           description: "",
           category: null,
         }}
-        onSubmit={(value) => console.log(value)}
+        onSubmit={(value) => console.log(location)}
         validationSchema={validationSchema}
       >
         <AppFormField
@@ -66,9 +77,9 @@ function ListingEditScreen(props) {
   );
 }
 const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 5,
-      },
-})
+  container: {
+    paddingHorizontal: 5,
+  },
+});
 
 export default ListingEditScreen;
