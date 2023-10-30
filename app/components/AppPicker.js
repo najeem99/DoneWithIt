@@ -13,7 +13,7 @@ import AppText from "./AppText";
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
 
-function AppPicker({ icon, items,width="100%", onSelectItem, selectedItem, placeholder }) {
+function AppPicker({ icon, items,PickerItemComponent = PickerItem,width="100%", onSelectItem, selectedItem, placeholder }) {
   const [modalVisibile, setModalVisible] = useState(false);
   return (
     <>
@@ -49,13 +49,14 @@ function AppPicker({ icon, items,width="100%", onSelectItem, selectedItem, place
             data={items}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);
                   onSelectItem(item);
                 }}
-              ></PickerItem>
+              ></PickerItemComponent>
             )}
           />
         </Screen>
