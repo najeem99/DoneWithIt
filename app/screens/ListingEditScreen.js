@@ -25,7 +25,7 @@ const categories = [
 function ListingEditScreen(props) {
   const [location,setLocation]= useState()
   const getLocation = async () => {
-    const {granted} = await Location.requestPermissionsAsync();
+    const {granted} = await Location.requestForegroundPermissionsAsync();
     if(!granted) return;
     const {coords: {latitude,longitude}} = await Location.getLastKnownPositionAsync();
     setLocation({latitude,longitude})
