@@ -21,24 +21,32 @@ import AccountScreen from "./app/screens/AccountScreen";
 import ListingScreen from "./app/screens/ListingScreen";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginScreen from "./app/screens/LoginScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
-const categories = [
-  {    label:"Furniture",value:1  },
-  {    label:"Couch",value:2  },
-  {    label:"Tiles",value:3  },
-];
+import * as ImagePicker from "expo-image-picker";
+import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 
 export default function App() {
-  const [category,setCategory] = useState(categories[0])
-  console.log("dsas");
+  const [imageUris, setImageUris] = useState([]);
+  requestPermissionsAsync = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    // const {granted} =await Permissions.askAsync(Permissions.CAMERA,Permissions.LOCATION_FOREGROUND);
 
-  const pressed = () => {
-    console.log("Button is pressed");
+    if (!granted) {
+      alert("You need to enable permission to access library");
+    }
   };
-  const longpressed = () => {
-    console.log("longpressed");
+  useEffect(() => {
+    requestPermissionsAsync();
+  }, []);
+  const handleAdd = (uri) => {
+    setImageUris([...imageUris, uri]);
+  };
+  const handleRemove = (uri) => {
+    console.log(uri)
+     setImageUris(imageUris.filter(imageuri => imageuri != uri));
   };
   return (
     // <SafeAreaView style={styles.container}>
@@ -49,30 +57,25 @@ export default function App() {
     // <MessagesScreen />
     <Screen>
       {/* <ListItem title="My title" subTitle="hello" ImageComponent={<Icon name={'email'} size={70} backgroundColor={colors.primary}></Icon>} /> */}
-{/* <Icon name={'email'} size={100} backgroundColor={colors.primary}> */}
+      {/* <Icon name={'email'} size={100} backgroundColor={colors.primary}> */}
 
-{/* </Icon> */}
-{/* <MessagesScreen /> */}
-{/* <AccountScreen/> */}
-{/* <ListingScreen/> */}
-{/* 
+      {/* </Icon> */}
+      {/* <MessagesScreen /> */}
+      {/* <AccountScreen/> */}
+      {/* <ListingScreen/> */}
+      {/* 
 <AppTextInput placeholder="enter Email" icon={'email'}></AppTextInput>
  <AppPicker icon='apps' placeholder="Category" items={categories} onSelectItem={setCategory} selectedItem={category}></AppPicker> */}
- {/* <LoginScreen/> */}
- <ListingEditScreen/>
+      {/* <LoginScreen/> */}
+      {/* <ListingEditScreen/> */}
+      <ImageInputList
+        imageUris={imageUris}
+        onAddImage={handleAdd}
+        onRemoveImage={handleRemove}
+      />
     </Screen>
     // </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // justifyContent:'center',
-    // alignItems:'center',
-    // display:'flex',
-    // flexDirection:'column',
-    backgroundColor: "red",
-  },
-});
+const styles = StyleSheet.create({});
