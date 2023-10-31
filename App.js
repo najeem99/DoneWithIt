@@ -67,12 +67,12 @@ export default function App() {
 <AppTextInput placeholder="enter Email" icon={'email'}></AppTextInput>
  <AppPicker icon='apps' placeholder="Category" items={categories} onSelectItem={setCategory} selectedItem={category}></AppPicker> */}
       {/* <LoginScreen/> */}
-      {/* <ListingEditScreen/> */}
-      <ImageInputList
+      <ListingEditScreen/>
+      {/* <ImageInputList
         imageUris={imageUris}
         onAddImage={handleAdd}
         onRemoveImage={handleRemove}
-      />
+      /> */}
     </Screen>
     // </SafeAreaView>
   );

@@ -1,5 +1,8 @@
 import React from "react";
 import ImageInputList from "../ImageInputList";
+import { useFormikContext } from "formik";
+import ErrorMessage from "./ErrorMessage";
+
 function FormImagePicker({ name }) {
   const { setFieldValue, handleChange, values, touched, errors } =
     useFormikContext();
