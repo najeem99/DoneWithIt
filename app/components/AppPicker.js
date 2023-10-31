@@ -13,7 +13,7 @@ import AppText from "./AppText";
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
 
-function AppPicker({ icon, items,PickerItemComponent = PickerItem,width="100%", onSelectItem, selectedItem, placeholder }) {
+function AppPicker({ icon, items,numColumns=1,PickerItemComponent = PickerItem,width="100%", onSelectItem, selectedItem, placeholder }) {
   const [modalVisibile, setModalVisible] = useState(false);
   return (
     <>
@@ -48,6 +48,7 @@ function AppPicker({ icon, items,PickerItemComponent = PickerItem,width="100%", 
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numColumns}
             renderItem={({ item }) => (
               <PickerItemComponent
                 item={item}
