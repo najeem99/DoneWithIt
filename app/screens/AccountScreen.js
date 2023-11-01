@@ -5,6 +5,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
 import Separator from "../components/Separator";
+import routes from "../navigation/routes";
 
 const menuItems = [
   {
@@ -13,7 +14,7 @@ const menuItems = [
       name: "format-list-bulleted",
       backgroundColor: colors.primary,
     },
-    targetScreen:"Listings"
+    targetScreen:routes.LISTINGS
   },
   {
     title: "My Messages",
@@ -21,7 +22,7 @@ const menuItems = [
       name: "email",
       backgroundColor: colors.secondary,
     },
-    targetScreen:"Messages"
+    targetScreen:routes.MESSAGES
   },
 ];
 
