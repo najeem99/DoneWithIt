@@ -7,7 +7,7 @@ const image = {
   uri: "https://mfiles.alphacoders.com/850/850597.jpg",
 };
 
-function WelcomeScreen(props) {
+function WelcomeScreen({navigation}) {
   return (
     <ImageBackground style={styles.background} source={image}>
       <View style={styles.logoContainer}>
@@ -15,8 +15,8 @@ function WelcomeScreen(props) {
         <Text style={styles.tagline}>Sell Your Knowledge Online</Text>
       </View>
       <View style={styles.container}>
-      <AppButton title="Log In"></AppButton>
-      <AppButton title="Register" color="secondary" ></AppButton>
+      <AppButton title="Log In" onPress={() => navigation.navigate("Login")}></AppButton>
+      <AppButton title="Register" color="secondary" onPress={() => navigation.navigate("Register")}></AppButton>
       </View>
 
     </ImageBackground>
