@@ -7,26 +7,26 @@ const listings = [
   {
     id: 1,
     title: "Bicycle with helmet",
-    price: 100,
+    price: 120,
     image:
       "https://www.firefoxbikes.com/on/demandware.static/-/Sites-firefox-navigation/default/dwda09db55/PLPBanner/categoryPLP/MTB/Firefox-Tremor-Web.jpg",
   },
   {
     id: 2,
     title: "Couch for sale",
-    price: 100,
+    price: 99,
     image:
       "https://livingindubai.org/wp-content/uploads/2016/04/sofa.jpg",
   },
   {
     id: 3,
     title: "Couch for sale",
-    price: 100,
+    price: 180,
     image:
       "https://livingindubai.org/wp-content/uploads/2016/04/sofa.jpg",
   },
 ];
-function ListingScreen(props) {
+function ListingScreen({navigation}) {
   return (
     <Screen style={styles.screen}>
       <FlatList
@@ -37,6 +37,7 @@ function ListingScreen(props) {
             title={item.title}
             subTitle={"AED " + item.price}
             image={{ uri: item.image }}
+            onPress={() => navigation.navigate("ListingDetails",item)}
           />
          }
       />

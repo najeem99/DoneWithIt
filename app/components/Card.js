@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet,Image ,View} from 'react-native';
 import AppText from './AppText';
 import colors from '../config/colors';
-function Card({title,subTitle,image}) {
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+function Card({title,subTitle,image,onPress}) {
     return (
+      <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.container}>
         <Image style={styles.imageView} source={image}></Image>
         <View style={styles.detailsContainer}>
@@ -13,6 +15,7 @@ function Card({title,subTitle,image}) {
           <AppText style={styles.price}>{subTitle}</AppText>
         </View>  
       </View>
+      </TouchableWithoutFeedback>
     );
 }
 const styles = StyleSheet.create({
